@@ -1,0 +1,19 @@
+from django.shortcuts import render
+
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+										PermissionRequiredMixin)
+
+
+from django.core.urlresolver import reverse
+from django.views import generic
+
+class CrestedGrou(LoginRequiredMixin,geneeeric.CreateView):\
+   fields=('name,'description')
+   model=Group
+   
+   class singleGroup(generic.DetailView):
+   model=Group
+   class ListenGroup(generic.ListView):
+   moel=Group
+
+					
