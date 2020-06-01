@@ -1,0 +1,10 @@
+ffrom django.shortcuts import render
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import CteateView
+
+from . import forms
+
+class Signup(Create view):
+	form_class=forms.UserCreateForm
+	success_url=reverse_lazy('login')
+	template_name='accounts/signup.html'
