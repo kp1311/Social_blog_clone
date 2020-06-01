@@ -1,0 +1,31 @@
+from django.db import models
+from django.core.urlresolvers import reverse
+fro djang.conf import settings
+
+import misaka
+
+from groups.models import Group
+
+from django.contrib.auth import get_user_model
+
+User=get_user_model()
+
+class Post(models.Model):
+	user models.ForeignKey(User,related_name='posts')
+	created_at=models.DateTimeField(auto_now=True)
+	message_html=models.TextField(editable=False)
+	group=models.ForeignKey(Grou[,Related_name='posts',null=True,balcnk=True)
+	
+	
+	def__str__(self):
+	return self.message
+	
+	def save(self,*args,**kwargs):
+	self.message_html=misaka.html(self.message)
+	
+	
+	def get_absolute_url(self):
+	return reverse('post:single',kwargs)
+	
+	class Meta:
+          ordering=['-created_at']	
