@@ -1,0 +1,42 @@
+
+{%Load static file%}
+<HTML>
+<HEAD>
+<TITLE>
+Star Social
+</TITLE>
+/*BOOTSRAP LINK*/
+/*JAVASRCIPT*/
+/*GOOGLE FONT*/
+/*CSS*/
+
+</HEAD>
+
+
+<BODY>
+
+<nav class='navbar mynav' role='navigation' id='navbar'>
+<ul class='nav navbar-nav navbar-right'>
+{ if user.is'_sunthenticated%}
+<li><a href ="#">Post</a></li>
+<li><a href="#">Groups</a></li>
+<li><a href="#">Create Group</a></li>
+<li><a href="#">Log out</a></li>
+{%else%}
+<li><a href="#">Groups</a></li>
+<li><a href="{%url 'accounts:login'%}">Log In</a></li>
+ <li><a href="{%url 'accounts:sign up'%}">Sign up</a></li>
+ 
+ {%endif%}
+ 
+ </ul>
+ 
+ 
+</ul>
+{%block content%}
+
+{% endblock %}
+
+
+</BODY>
+</HTML>
