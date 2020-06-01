@@ -1,0 +1,44 @@
+from djnago.db import models
+
+from django.utils.text import slugify
+
+import misaka
+
+from django.contrib.auth imort get_user_model
+
+User =get-user_model()
+
+from django import template
+register=template.Library()
+
+class Group(model.Model):
+	name=models.Charfield(max_length=155,unique=True)
+	slug=models.SlugField(allow-unicode=true.unique=True)
+	description=models.textField(blank=True,default='')
+	description_html=models.Textfield(editable=Flase.default='',blank=True)
+	
+	def__str__(self):
+	return self.name
+	
+	def save(self,*args,**kwargs):
+	self.slug=slugify(self.name)
+	seld.description_html=misaka,html(self.description)
+	super(.save(*args,**kwargs))
+	
+	
+	def get-absolute_url(self):
+	return reverse('groups:single',kwargs={'slug:self.slug'}')
+	
+	class Meta;
+	ordering='name'
+	
+	
+class GroupMember(models.Model):
+	group=models.ForeignKey(Group,related_name='memberships')
+	user=models.ForeignKey(User,related_name="user_group")
+	
+	def__str__(self):
+	return self.user.username
+	
+	class Meta:
+	unique_together
